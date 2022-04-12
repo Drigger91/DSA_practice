@@ -33,3 +33,55 @@
         sort(result.begin(),result.end());
         return generate(result);
     }
+
+//     You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
+
+// Merge all the linked-lists into one sorted linked-list and return it.
+
+ ListNode* mergeKLists(vector<ListNode*>& lists) {
+        //brute force solution
+        // if(lists.size()==0){
+        //     return NULL;
+        // }
+        // vector<int>ans;
+        // for(int i =0;i<lists.size();i++){
+        //     ListNode*temp = lists[i];
+        //     while(temp!=NULL){
+        //         ans.push_back(temp->val);
+        //         temp = temp->next;
+        //     }
+        // }
+        // sort(ans.begin(),ans.end());
+        // ListNode*head = new ListNode(0);
+        // ListNode*temp = head;
+        // for(int i=0;i<ans.size();i++){
+        //     ListNode*next = new ListNode(ans[i]);
+        //     temp->next = next;
+        //     temp=temp->next;
+        // }
+        // return head->next;
+        
+        //second approach
+        priority_queue<pair<int, ListNode*>, vector<pair<int, ListNode*>>, greater<pair<int, ListNode*>>> pq;
+        ListNode* head = new ListNode(0); 
+        ListNode* temp = head; 
+
+        for(ListNode* list : lists){
+            if(list) {
+                pq.push({list->val, list}); 
+            }
+        }
+
+        while(!pq.empty()){
+            temp->next = pq.top().second; 
+            pq.pop(); 
+            temp = temp->next; 
+            if(temp->next){
+                pq.push({temp->next->val, temp->next});
+            }
+        }
+
+        return head->next;
+        
+        //can also be done by merging 2 lists consecutively till the array ends (discussion)
+    }
