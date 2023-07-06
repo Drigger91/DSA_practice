@@ -13,7 +13,7 @@ public class MinSubarrayLen {
         int start = 0;
         int end = 0;
         while (end < nums.length) {
-            sum += nums[end];̵
+            sum += nums[end];
             while (sum >= target) {
                 min = Math.min(min, end - start + 1);
                 sum -= nums[start];
