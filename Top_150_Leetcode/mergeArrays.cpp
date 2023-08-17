@@ -7,7 +7,7 @@
 // Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
 // The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.
 #include<iostream>
-#include<bits/stdc++.h>
+#include<vector>
 using namespace std;
 
 void merge(int m, int n, vector<int> nums1, vector<int> nums2) {
